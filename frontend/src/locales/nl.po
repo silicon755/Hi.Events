@@ -101,7 +101,7 @@ msgstr "{0} succesvol bijgewerkt"
 #~ msgid "{0}{1}"
 #~ msgstr "{0}{1}"
 
-#: src/components/layouts/CheckIn/index.tsx:449
+#: src/components/layouts/CheckIn/index.tsx:457
 msgid "{0}/{1} checked in"
 msgstr "{0}/{1} ingecheckt"
 
@@ -930,7 +930,7 @@ msgstr "Details deelnemers"
 msgid "Attendee Management"
 msgstr "Beheer van deelnemers"
 
-#: src/components/layouts/CheckIn/index.tsx:150
+#: src/components/layouts/CheckIn/index.tsx:154
 msgid "Attendee not found"
 msgstr "Deelnemer niet gevonden"
 
@@ -1021,7 +1021,7 @@ msgstr "In afwachting van offline betaling"
 msgid "Awaiting Offline Pmt."
 msgstr "Wacht op offline betaling"
 
-#: src/components/layouts/CheckIn/index.tsx:263
+#: src/components/layouts/CheckIn/index.tsx:267
 msgid "Awaiting payment"
 msgstr "In afwachting van betaling"
 
@@ -1162,7 +1162,7 @@ msgstr "Cameratoestemming is geweigerd. <0>Vraag toestemming</0> opnieuw, of als
 #: src/components/common/ContactOrganizerModal/index.tsx:104
 #: src/components/common/PromoCodeTable/index.tsx:40
 #: src/components/common/QuestionAndAnswerList/index.tsx:149
-#: src/components/layouts/CheckIn/index.tsx:225
+#: src/components/layouts/CheckIn/index.tsx:229
 #: src/utilites/confirmationDialog.tsx:11
 msgid "Cancel"
 msgstr "Annuleren"
@@ -1201,7 +1201,7 @@ msgstr "Door te annuleren worden alle producten geannuleerd die aan deze bestell
 msgid "Cancelled"
 msgstr "Geannuleerd"
 
-#: src/components/layouts/CheckIn/index.tsx:173
+#: src/components/layouts/CheckIn/index.tsx:177
 msgid "Cannot Check In"
 msgstr "Kan niet inchecken"
 
@@ -1262,26 +1262,26 @@ msgstr "Liefdadigheid"
 #~ msgid "check in"
 #~ msgstr "inchecken"
 
-#: src/components/layouts/CheckIn/index.tsx:180
+#: src/components/layouts/CheckIn/index.tsx:184
 msgid "Check In"
 msgstr "Inchecken"
 
-#: src/components/layouts/CheckIn/index.tsx:193
+#: src/components/layouts/CheckIn/index.tsx:197
 msgid "Check in {0} {1}"
 msgstr "Inchecken {0} {1}"
 
-#: src/components/layouts/CheckIn/index.tsx:218
+#: src/components/layouts/CheckIn/index.tsx:222
 msgid "Check in and mark order as paid"
 msgstr "Check in en markeer bestelling als betaald"
 
-#: src/components/layouts/CheckIn/index.tsx:209
+#: src/components/layouts/CheckIn/index.tsx:213
 msgid "Check in only"
 msgstr "Alleen inchecken"
 
 #~ msgid "check out"
 #~ msgstr "uitchecken"
 
-#: src/components/layouts/CheckIn/index.tsx:177
+#: src/components/layouts/CheckIn/index.tsx:181
 msgid "Check Out"
 msgstr "Uitchecken"
 
@@ -1316,15 +1316,15 @@ msgstr "Check-in lijst succesvol aangemaakt"
 msgid "Check-In List deleted successfully"
 msgstr "Check-in lijst succesvol verwijderd"
 
-#: src/components/layouts/CheckIn/index.tsx:326
+#: src/components/layouts/CheckIn/index.tsx:334
 msgid "Check-in list has expired"
 msgstr "Check-in lijst is verlopen"
 
-#: src/components/layouts/CheckIn/index.tsx:343
+#: src/components/layouts/CheckIn/index.tsx:351
 msgid "Check-in list is not active"
 msgstr "Check-in lijst is niet actief"
 
-#: src/components/layouts/CheckIn/index.tsx:311
+#: src/components/layouts/CheckIn/index.tsx:319
 msgid "Check-in list not found"
 msgstr "Check-in lijst niet gevonden"
 
@@ -2867,7 +2867,7 @@ msgstr "Vervaldatum"
 
 #: src/components/routes/event/Affiliates/index.tsx:79
 #: src/components/routes/event/attendees.tsx:80
-#: src/components/routes/event/orders.tsx:140
+#: src/components/routes/event/orders.tsx:147
 msgid "Export"
 msgstr "Exporteer"
 
@@ -3026,7 +3026,7 @@ msgstr "Festival"
 #~ msgid "Film"
 #~ msgstr ""
 
-#: src/components/routes/event/orders.tsx:121
+#: src/components/routes/event/orders.tsx:128
 msgid "Filter Orders"
 msgstr "Bestellingen filteren"
 
@@ -4615,7 +4615,7 @@ msgid "Order Updated"
 msgstr "Bijgewerkte bestelling"
 
 #: src/components/layouts/Event/index.tsx:100
-#: src/components/routes/event/orders.tsx:113
+#: src/components/routes/event/orders.tsx:120
 msgid "Orders"
 msgstr "Bestellingen"
 
@@ -5592,8 +5592,8 @@ msgstr "Instellingen opslaan"
 msgid "Save Social Links"
 msgstr "Sociale links opslaan"
 
-#: src/components/layouts/CheckIn/index.tsx:398
-#: src/components/layouts/CheckIn/index.tsx:400
+#: src/components/layouts/CheckIn/index.tsx:406
+#: src/components/layouts/CheckIn/index.tsx:408
 msgid "Scan QR Code"
 msgstr "QR-code scannen"
 
@@ -5627,11 +5627,11 @@ msgstr "Zoeken op evenementnaam..."
 #~ msgid "Search by name or description..."
 #~ msgstr "Zoeken op naam of beschrijving..."
 
-#: src/components/routes/event/orders.tsx:126
+#: src/components/routes/event/orders.tsx:133
 msgid "Search by name, email, or order #..."
 msgstr "Zoeken op naam, e-mail of bestelnummer..."
 
-#: src/components/layouts/CheckIn/index.tsx:394
+#: src/components/layouts/CheckIn/index.tsx:402
 msgid "Search by name, order #, attendee # or email..."
 msgstr "Zoek op naam, ordernummer, aanwezigheidsnummer of e-mail..."
 
@@ -6501,7 +6501,7 @@ msgstr "De achtergrondkleur van de volledige pagina"
 #~ msgid "The basic details of your event"
 #~ msgstr "De basisgegevens van je evenement"
 
-#: src/components/layouts/CheckIn/index.tsx:316
+#: src/components/layouts/CheckIn/index.tsx:324
 msgid "The check-in list you are looking for does not exist."
 msgstr "De check-in lijst die je zoekt bestaat niet."
 
@@ -6654,7 +6654,7 @@ msgstr "Er is een fout opgetreden bij het verzenden van uw bericht"
 msgid "These details will only be shown if order is completed successfully. Orders awaiting payment will not show this message."
 msgstr "Deze gegevens worden alleen weergegeven als de bestelling succesvol is afgerond. Bestellingen die op betaling wachten, krijgen dit bericht niet te zien."
 
-#: src/components/layouts/CheckIn/index.tsx:201
+#: src/components/layouts/CheckIn/index.tsx:205
 msgid "This attendee has an unpaid order."
 msgstr "Deze deelnemer heeft een onbetaalde bestelling."
 
@@ -6670,7 +6670,7 @@ msgstr "Deze categorie is niet zichtbaar voor het publiek"
 msgid "This check-in list has expired"
 msgstr "Deze check-in lijst is verlopen"
 
-#: src/components/layouts/CheckIn/index.tsx:331
+#: src/components/layouts/CheckIn/index.tsx:339
 msgid "This check-in list has expired and is no longer available for check-ins."
 msgstr "Deze check-ins lijst is verlopen en niet langer beschikbaar voor check-ins."
 
@@ -6682,7 +6682,7 @@ msgstr "Deze check-in lijst is actief"
 msgid "This check-in list is not active yet"
 msgstr "Deze check-in lijst is nog niet actief"
 
-#: src/components/layouts/CheckIn/index.tsx:348
+#: src/components/layouts/CheckIn/index.tsx:356
 msgid "This check-in list is not yet active and is not available for check-ins."
 msgstr "Deze check-ins lijst is nog niet actief en is niet beschikbaar voor check-ins."
 
@@ -7094,7 +7094,8 @@ msgstr "Type"
 msgid "Unable to check in attendee"
 msgstr "Deelnemer kan niet worden ingecheckt"
 
-#: src/components/layouts/CheckIn/index.tsx:114
+#: src/components/layouts/CheckIn/index.tsx:115
+#: src/components/layouts/CheckIn/index.tsx:117
 msgid "Unable to check out attendee"
 msgstr "Deelnemer kan niet worden uitgecheckt"
 
@@ -7117,7 +7118,7 @@ msgstr "Kan geen vraag maken. Controleer uw gegevens"
 msgid "Unable to duplicate product. Please check the your details"
 msgstr "Kan product niet dupliceren. Controleer uw gegevens"
 
-#: src/components/layouts/CheckIn/index.tsx:145
+#: src/components/layouts/CheckIn/index.tsx:149
 msgid "Unable to fetch attendee"
 msgstr "Kan deelnemer niet ophalen"
 
@@ -7162,7 +7163,7 @@ msgstr "Onbeperkt beschikbaar"
 msgid "Unlimited usages allowed"
 msgstr "Onbeperkt gebruik toegestaan"
 
-#: src/components/layouts/CheckIn/index.tsx:200
+#: src/components/layouts/CheckIn/index.tsx:204
 msgid "Unpaid Order"
 msgstr "Onbetaalde bestelling"
 
@@ -7767,8 +7768,8 @@ msgstr "Je kunt het producttype niet wijzigen omdat er deelnemers aan dit produc
 #~ msgid "You cannot check in attendees with unpaid orders."
 #~ msgstr "Je kunt deelnemers met onbetaalde bestellingen niet inchecken."
 
-#: src/components/layouts/CheckIn/index.tsx:129
-#: src/components/layouts/CheckIn/index.tsx:164
+#: src/components/layouts/CheckIn/index.tsx:133
+#: src/components/layouts/CheckIn/index.tsx:168
 msgid "You cannot check in attendees with unpaid orders. This setting can be changed in the event settings."
 msgstr "Je kunt deelnemers met onbetaalde bestellingen niet inchecken. Je kunt deze instelling wijzigen in de evenementinstellingen."
 

@@ -24,7 +24,10 @@ class CreateInvoiceListener
 
         $order = $event->order;
 
-        if ($order->getStatus() !== OrderStatus::AWAITING_OFFLINE_PAYMENT->name && $order->getStatus() !== OrderStatus::COMPLETED->name) {
+        if ($order->getStatus() !== OrderStatus::AWAITING_OFFLINE_PAYMENT->name && 
+            $order->getStatus() !== OrderStatus::COMPLETED->name &&
+            $order->getStatus() !== OrderStatus::AWAITING_MPESA_PAYMENT->name
+        ) {
             return;
         }
 

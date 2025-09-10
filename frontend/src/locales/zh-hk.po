@@ -87,7 +87,7 @@ msgstr "{0}更新成功"
 #~ msgid "{0}'s Events"
 #~ msgstr "{0}的活動"
 
-#: src/components/layouts/CheckIn/index.tsx:449
+#: src/components/layouts/CheckIn/index.tsx:457
 msgid "{0}/{1} checked in"
 msgstr "{0}/{1} 已簽到"
 
@@ -883,7 +883,7 @@ msgstr "與會者詳情"
 msgid "Attendee Management"
 msgstr "與會者管理"
 
-#: src/components/layouts/CheckIn/index.tsx:150
+#: src/components/layouts/CheckIn/index.tsx:154
 msgid "Attendee not found"
 msgstr "未找到參與者"
 
@@ -968,7 +968,7 @@ msgstr "等待線下付款"
 msgid "Awaiting Offline Pmt."
 msgstr "等待線下付款"
 
-#: src/components/layouts/CheckIn/index.tsx:263
+#: src/components/layouts/CheckIn/index.tsx:267
 msgid "Awaiting payment"
 msgstr "等待付款"
 
@@ -1090,7 +1090,7 @@ msgstr "相機權限被拒絕。<0>再次請求權限</0>，如果還不行，�
 #: src/components/common/ContactOrganizerModal/index.tsx:104
 #: src/components/common/PromoCodeTable/index.tsx:40
 #: src/components/common/QuestionAndAnswerList/index.tsx:149
-#: src/components/layouts/CheckIn/index.tsx:225
+#: src/components/layouts/CheckIn/index.tsx:229
 #: src/utilites/confirmationDialog.tsx:11
 msgid "Cancel"
 msgstr "取消"
@@ -1131,7 +1131,7 @@ msgstr "取消將會取消與此訂單關聯的所有產品，並將產品釋放
 msgid "Cancelled"
 msgstr "已取消"
 
-#: src/components/layouts/CheckIn/index.tsx:173
+#: src/components/layouts/CheckIn/index.tsx:177
 msgid "Cannot Check In"
 msgstr "無法簽到"
 
@@ -1194,19 +1194,19 @@ msgstr "慈善"
 #~ msgid "check in"
 #~ msgstr "報到"
 
-#: src/components/layouts/CheckIn/index.tsx:180
+#: src/components/layouts/CheckIn/index.tsx:184
 msgid "Check In"
 msgstr "報到"
 
-#: src/components/layouts/CheckIn/index.tsx:193
+#: src/components/layouts/CheckIn/index.tsx:197
 msgid "Check in {0} {1}"
 msgstr "簽到 {0} {1}"
 
-#: src/components/layouts/CheckIn/index.tsx:218
+#: src/components/layouts/CheckIn/index.tsx:222
 msgid "Check in and mark order as paid"
 msgstr "簽到並將訂單標記為已支付"
 
-#: src/components/layouts/CheckIn/index.tsx:209
+#: src/components/layouts/CheckIn/index.tsx:213
 msgid "Check in only"
 msgstr "僅簽到"
 
@@ -1215,7 +1215,7 @@ msgstr "僅簽到"
 #~ msgid "check out"
 #~ msgstr "查看"
 
-#: src/components/layouts/CheckIn/index.tsx:177
+#: src/components/layouts/CheckIn/index.tsx:181
 msgid "Check Out"
 msgstr "簽退"
 
@@ -1251,15 +1251,15 @@ msgstr "簽到列表創建成功"
 msgid "Check-In List deleted successfully"
 msgstr "簽到列表刪除成功"
 
-#: src/components/layouts/CheckIn/index.tsx:326
+#: src/components/layouts/CheckIn/index.tsx:334
 msgid "Check-in list has expired"
 msgstr "簽到列表已過期"
 
-#: src/components/layouts/CheckIn/index.tsx:343
+#: src/components/layouts/CheckIn/index.tsx:351
 msgid "Check-in list is not active"
 msgstr "簽到列表未激活"
 
-#: src/components/layouts/CheckIn/index.tsx:311
+#: src/components/layouts/CheckIn/index.tsx:319
 msgid "Check-in list not found"
 msgstr "未找到簽到列表"
 
@@ -2764,7 +2764,7 @@ msgstr "有效期"
 
 #: src/components/routes/event/Affiliates/index.tsx:79
 #: src/components/routes/event/attendees.tsx:80
-#: src/components/routes/event/orders.tsx:140
+#: src/components/routes/event/orders.tsx:147
 msgid "Export"
 msgstr "出口"
 
@@ -2927,7 +2927,7 @@ msgstr "節慶"
 #~ msgid "Film"
 #~ msgstr ""
 
-#: src/components/routes/event/orders.tsx:121
+#: src/components/routes/event/orders.tsx:128
 msgid "Filter Orders"
 msgstr "篩選訂單"
 
@@ -4452,7 +4452,7 @@ msgid "Order Updated"
 msgstr "訂單已更新"
 
 #: src/components/layouts/Event/index.tsx:100
-#: src/components/routes/event/orders.tsx:113
+#: src/components/routes/event/orders.tsx:120
 msgid "Orders"
 msgstr "訂單"
 
@@ -5403,8 +5403,8 @@ msgstr "保存設置"
 msgid "Save Social Links"
 msgstr "儲存社交連結"
 
-#: src/components/layouts/CheckIn/index.tsx:398
-#: src/components/layouts/CheckIn/index.tsx:400
+#: src/components/layouts/CheckIn/index.tsx:406
+#: src/components/layouts/CheckIn/index.tsx:408
 msgid "Scan QR Code"
 msgstr "掃描 QR 碼"
 
@@ -5433,11 +5433,11 @@ msgstr "按與會者姓名、電子郵件或訂單號搜索..."
 msgid "Search by event name..."
 msgstr "按活動名稱搜索..."
 
-#: src/components/routes/event/orders.tsx:126
+#: src/components/routes/event/orders.tsx:133
 msgid "Search by name, email, or order #..."
 msgstr "按姓名、電子郵件或訂單號搜索..."
 
-#: src/components/layouts/CheckIn/index.tsx:394
+#: src/components/layouts/CheckIn/index.tsx:402
 msgid "Search by name, order #, attendee # or email..."
 msgstr "按姓名、訂單號、參與者號或電子郵件搜索..."
 
@@ -6274,7 +6274,7 @@ msgstr "內容區域（卡片、標題等）的背景顏色"
 msgid "The background color of the entire page"
 msgstr "整個頁面的背景顏色"
 
-#: src/components/layouts/CheckIn/index.tsx:316
+#: src/components/layouts/CheckIn/index.tsx:324
 msgid "The check-in list you are looking for does not exist."
 msgstr "您查找的簽到列表不存在。"
 
@@ -6392,7 +6392,7 @@ msgstr "發送信息時出現錯誤"
 msgid "These details will only be shown if order is completed successfully. Orders awaiting payment will not show this message."
 msgstr "這些詳細信息僅在訂單成功完成後顯示。等待付款的訂單不會顯示此消息。"
 
-#: src/components/layouts/CheckIn/index.tsx:201
+#: src/components/layouts/CheckIn/index.tsx:205
 msgid "This attendee has an unpaid order."
 msgstr "此與會者有未支付的訂單。"
 
@@ -6408,7 +6408,7 @@ msgstr "此類別對公眾隱藏"
 msgid "This check-in list has expired"
 msgstr "此簽到列表已過期"
 
-#: src/components/layouts/CheckIn/index.tsx:331
+#: src/components/layouts/CheckIn/index.tsx:339
 msgid "This check-in list has expired and is no longer available for check-ins."
 msgstr "此簽到列表已過期，不再可用於簽到。"
 
@@ -6420,7 +6420,7 @@ msgstr "此簽到列表已激活"
 msgid "This check-in list is not active yet"
 msgstr "此簽到列表尚未激活"
 
-#: src/components/layouts/CheckIn/index.tsx:348
+#: src/components/layouts/CheckIn/index.tsx:356
 msgid "This check-in list is not yet active and is not available for check-ins."
 msgstr "此簽到列表尚未激活，不能用於簽到。"
 
@@ -6822,7 +6822,8 @@ msgstr "類型"
 msgid "Unable to check in attendee"
 msgstr "無法簽到參與者"
 
-#: src/components/layouts/CheckIn/index.tsx:114
+#: src/components/layouts/CheckIn/index.tsx:115
+#: src/components/layouts/CheckIn/index.tsx:117
 msgid "Unable to check out attendee"
 msgstr "無法簽退參與者"
 
@@ -6847,7 +6848,7 @@ msgstr "無法創建問題。請檢查您的詳細信息"
 msgid "Unable to duplicate product. Please check the your details"
 msgstr "無法複製產品。請檢查您的詳細信息"
 
-#: src/components/layouts/CheckIn/index.tsx:145
+#: src/components/layouts/CheckIn/index.tsx:149
 msgid "Unable to fetch attendee"
 msgstr "無法擷取參與者資料"
 
@@ -6889,7 +6890,7 @@ msgstr "無限供應"
 msgid "Unlimited usages allowed"
 msgstr "允許無限次使用"
 
-#: src/components/layouts/CheckIn/index.tsx:200
+#: src/components/layouts/CheckIn/index.tsx:204
 msgid "Unpaid Order"
 msgstr "未支付訂單"
 
@@ -7484,8 +7485,8 @@ msgstr "您無法更改產品類型，因為有與該產品關聯的參會者。
 #~ msgid "You cannot check in attendees with unpaid orders."
 #~ msgstr "您無法為未支付訂單的與會者簽到。"
 
-#: src/components/layouts/CheckIn/index.tsx:129
-#: src/components/layouts/CheckIn/index.tsx:164
+#: src/components/layouts/CheckIn/index.tsx:133
+#: src/components/layouts/CheckIn/index.tsx:168
 msgid "You cannot check in attendees with unpaid orders. This setting can be changed in the event settings."
 msgstr "您無法為未支付訂單的與會者簽到。此設置可在活動設置中更改。"
 

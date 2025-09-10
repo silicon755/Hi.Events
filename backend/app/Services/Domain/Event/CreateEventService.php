@@ -26,27 +26,25 @@ use Throwable;
 class CreateEventService
 {
     public function __construct(
-        private readonly EventRepositoryInterface          $eventRepository,
-        private readonly EventSettingsRepositoryInterface  $eventSettingsRepository,
-        private readonly OrganizerRepositoryInterface      $organizerRepository,
-        private readonly DatabaseManager                   $databaseManager,
+        private readonly EventRepositoryInterface     $eventRepository,
+        private readonly EventSettingsRepositoryInterface $eventSettingsRepository,
+        private readonly OrganizerRepositoryInterface     $organizerRepository,
+        private readonly DatabaseManager              $databaseManager,
         private readonly EventStatisticRepositoryInterface $eventStatisticsRepository,
-        private readonly HtmlPurifierService               $purifier,
-        private readonly ImageRepositoryInterface          $imageRepository,
-        private readonly Repository                        $config,
-        private readonly FilesystemManager                 $filesystemManager,
-    )
-    {
+        private readonly HtmlPurifierService          $purifier,
+        private readonly ImageRepositoryInterface     $imageRepository,
+        private readonly Repository                   $config,
+        private readonly FilesystemManager            $filesystemManager,
+    ) {
     }
 
     /**
      * @throws Throwable
      */
     public function createEvent(
-        EventDomainObject         $eventData,
+        EventDomainObject     $eventData,
         ?EventSettingDomainObject $eventSettings = null
-    ): EventDomainObject
-    {
+    ): EventDomainObject {
         return $this->databaseManager->transaction(function () use ($eventData, $eventSettings) {
             $organizer = $this->getOrganizer(
                 organizerId: $eventData->getOrganizerId(),
@@ -161,11 +159,10 @@ class CreateEventService
 
     private function createEventSettings(
         ?EventSettingDomainObject $eventSettings,
-        EventDomainObject         $event,
+        EventDomainObject     $event,
         OrganizerDomainObject     $organizer,
-        bool                      $eventCoverCreated = false
-    ): void
-    {
+        bool                  $eventCoverCreated = false
+    ): void {
         if ($eventSettings !== null) {
             $eventSettings->setEventId($event->getId());
             $eventSettingsArray = $eventSettings->toArray();
@@ -212,8 +209,13 @@ class CreateEventService
             'continue_button_text' => __('Continue'),
             'support_email' => $organizer->getEmail(),
 
-            'payment_providers' => [PaymentProviders::STRIPE->value],
+            // Add the new payment provider here
+            'payment_providers' => [
+                PaymentProviders::STRIPE->value,
+                PaymentProviders::MPESA->value,
+            ],
             'offline_payment_instructions' => null,
+            'mpesa_instructions' => null, // Add a default value for M-Pesa instructions
 
             'enable_invoicing' => false,
             'invoice_label' => __('Invoice'),
@@ -223,6 +225,7 @@ class CreateEventService
             'organization_name' => $organizer->getName(),
             'organization_address' => null,
             'invoice_tax_details' => null,
+            'invoice_notes' => null,
         ]);
     }
 }

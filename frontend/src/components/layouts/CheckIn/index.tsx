@@ -2,7 +2,7 @@ import {useParams} from "react-router";
 import {useGetCheckInListPublic} from "../../../queries/useGetCheckInListPublic.ts";
 import {useState} from "react";
 import {useDebouncedValue, useDisclosure, useNetwork} from "@mantine/hooks";
-import {Attendee, QueryFilters} from "../../../types.ts";
+import {Attendee, QueryFilters, QueryFilterOperator} from "../../../types.ts";
 import {showError, showSuccess} from "../../../utilites/notifications.tsx";
 import {t, Trans} from "@lingui/macro";
 import {AxiosError} from "axios";
@@ -52,7 +52,7 @@ const CheckIn = () => {
         query: searchQueryDebounced,
         perPage: 150,
         filterFields: {
-            status: {operator: 'eq', value: 'ACTIVE'},
+            status: {operator: QueryFilterOperator.Equals, value: 'ACTIVE'},
         },
     };
 
@@ -111,7 +111,11 @@ const CheckIn = () => {
                         return;
                     }
 
-                    showError(error?.response?.data.message || t`Unable to check out attendee`);
+                    if (error instanceof AxiosError) {
+                        showError(error?.response?.data.message || t`Unable to check out attendee`);
+                    } else {
+                        showError(t`Unable to check out attendee`);
+                    }
                 }
             });
             return;
@@ -305,7 +309,11 @@ const CheckIn = () => {
         );
     }
 
-    if (CheckInListQuery.error && CheckInListQuery.error.response?.status === 404) {
+    if (
+        CheckInListQuery.error &&
+        (CheckInListQuery.error instanceof AxiosError) &&
+        CheckInListQuery.error.response?.status === 404
+    ) {
         return (
             <NoResultsSplash
                 heading={t`Check-in list not found`}

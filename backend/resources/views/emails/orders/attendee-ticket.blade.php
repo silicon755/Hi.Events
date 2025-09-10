@@ -1,4 +1,5 @@
 @php use HiEvents\Helper\DateHelper; @endphp
+@php use HiEvents\DomainObjects\Enums\PaymentProviders; @endphp
 @php /** @uses \HiEvents\Mail\Order\OrderSummary */ @endphp
 @php /** @var \HiEvents\DomainObjects\EventDomainObject $event */ @endphp
 @php /** @var \HiEvents\DomainObjects\EventSettingDomainObject $eventSettings */ @endphp
@@ -19,6 +20,19 @@
 <p>
 {{ __('ℹ️ Your order is pending payment. Tickets have been issued but will not be valid until payment is received.') }}
 </p>
+
+@if ($order->getPaymentProvider() === PaymentProviders::MPESA->value && $eventSettings->getMpesaInstructions())
+    <p>
+        **{{ __('M-Pesa Payment Instructions:') }}**<br>
+        {{ $eventSettings->getMpesaInstructions() }}
+    </p>
+@elseif ($eventSettings->getOfflinePaymentInstructions())
+    <p>
+        **{{ __('Offline Payment Instructions:') }}**<br>
+        {{ $eventSettings->getOfflinePaymentInstructions() }}
+    </p>
+@endif
+
 </div>
 @endif
 
@@ -35,7 +49,7 @@
 {{ $organizer->getName() ?: config('app.name') }}
 
 <script type="application/ld+json">
-        {
+{
   "@context": "http://schema.org",
   "@type": "EventReservation",
   "reservationNumber": "{{ $attendee->getPublicId() }}",

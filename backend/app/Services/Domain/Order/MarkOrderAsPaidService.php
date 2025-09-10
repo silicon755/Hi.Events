@@ -47,8 +47,7 @@ class MarkOrderAsPaidService
         private readonly EventRepositoryInterface              $eventRepository,
         private readonly OrderApplicationFeeService            $orderApplicationFeeService,
         private readonly SendOrderDetailsService               $sendOrderDetailsService,
-    )
-    {
+    ) {
     }
 
     /**
@@ -57,8 +56,7 @@ class MarkOrderAsPaidService
     public function markOrderAsPaid(
         int $orderId,
         int $eventId,
-    ): OrderDomainObject
-    {
+    ): OrderDomainObject {
         return $this->databaseManager->transaction(function () use ($orderId, $eventId) {
             /** @var OrderDomainObject $order */
             $order = $this->orderRepository
@@ -75,8 +73,8 @@ class MarkOrderAsPaidService
                 ->loadRelation(new Relationship(EventSettingDomainObject::class))
                 ->findById($order->getEventId());
 
-            if ($order->getStatus() !== OrderStatus::AWAITING_OFFLINE_PAYMENT->name) {
-                throw new ResourceConflictException(__('Order is not awaiting offline payment'));
+            if (!$order->isAwaitingPayment()) {
+                throw new ResourceConflictException(__('Order is not awaiting payment'));
             }
 
             $this->updateOrderStatus($orderId);
@@ -109,7 +107,9 @@ class MarkOrderAsPaidService
                 ),
             );
 
-            $this->storeApplicationFeePayment($updatedOrder);
+            // Update the storeApplicationFeePayment call to use the actual payment provider
+            $paymentProvider = PaymentProviders::from($updatedOrder->getPaymentProvider());
+            $this->storeApplicationFeePayment($updatedOrder, $paymentProvider);
 
             $this->sendOrderDetailsService->sendCustomerOrderSummary(
                 order: $updatedOrder,
@@ -158,7 +158,7 @@ class MarkOrderAsPaidService
     /**
      * @throws MathException
      */
-    private function storeApplicationFeePayment(OrderDomainObject $updatedOrder): void
+    private function storeApplicationFeePayment(OrderDomainObject $updatedOrder, PaymentProviders $paymentProvider): void
     {
         /** @var EventDomainObject $event */
         $event = $this->eventRepository
@@ -184,7 +184,7 @@ class MarkOrderAsPaidService
                 order: $updatedOrder,
             )->toMinorUnit(),
             orderApplicationFeeStatus: OrderApplicationFeeStatus::AWAITING_PAYMENT,
-            paymentMethod: PaymentProviders::OFFLINE,
+            paymentMethod: $paymentProvider,
             currency: $updatedOrder->getCurrency(),
         );
     }

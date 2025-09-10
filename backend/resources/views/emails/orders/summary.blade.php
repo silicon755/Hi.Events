@@ -1,4 +1,5 @@
 @php use Carbon\Carbon; use HiEvents\Helper\Currency; use HiEvents\Helper\DateHelper; @endphp
+@php use HiEvents\DomainObjects\Enums\PaymentProviders; @endphp
 @php /** @var \HiEvents\DomainObjects\OrderDomainObject $order */ @endphp
 @php /** @var \HiEvents\DomainObjects\EventDomainObject $event */ @endphp
 @php /** @var \HiEvents\DomainObjects\OrganizerDomainObject $organizer */ @endphp
@@ -26,7 +27,13 @@
 <div style="border-radius: 4px; background-color: #d7e8f8; color: #204e84; margin-bottom: 1.5rem; padding: 1rem;">
 <h2>{{ __('Payment Instructions') }}</h2>
 {{ __('Please follow the instructions below to complete your payment.') }}
+
+@if($order->getPaymentProvider() === PaymentProviders::MPESA->value)
+{!! $eventSettings->getMpesaInstructions() !!}
+@else
 {!! $eventSettings->getOfflinePaymentInstructions() !!}
+@endif
+
 </div>
 </div>
 
@@ -36,7 +43,7 @@
 
 # {{ __('Event Details') }}
 **{{ __('Event Name:') }}** {{ $event->getTitle() }}
-    <br>
+<br>
 **{{ __('Date & Time:') }}** {{ (new Carbon(DateHelper::convertFromUTC($event->getStartDate(), $event->getTimezone())))->format('F j, Y') }} at {{ (new Carbon(DateHelper::convertFromUTC($event->getStartDate(), $event->getTimezone())))->format('g:i A') }}
 
 </p>

@@ -39,6 +39,7 @@ class AttendeeRepository extends BaseRepository implements AttendeeRepositoryInt
         $this->model->join('orders', 'orders.id', '=', 'attendees.order_id');
         $this->model->whereIn('orders.status', [
             OrderStatus::AWAITING_OFFLINE_PAYMENT->name,
+            OrderStatus::AWAITING_MPESA_PAYMENT->name,
             OrderStatus::COMPLETED->name,
             OrderStatus::CANCELLED->name
         ]);
@@ -76,7 +77,12 @@ class AttendeeRepository extends BaseRepository implements AttendeeRepositoryInt
 
         $this->model = $this->model->select('attendees.*')
             ->join('orders', 'orders.id', '=', 'attendees.order_id')
-            ->whereIn('orders.status', [OrderStatus::COMPLETED->name, OrderStatus::CANCELLED->name, OrderStatus::AWAITING_OFFLINE_PAYMENT->name])
+            ->whereIn('orders.status', [
+                OrderStatus::COMPLETED->name, 
+                OrderStatus::CANCELLED->name, 
+                OrderStatus::AWAITING_OFFLINE_PAYMENT->name,
+                OrderStatus::AWAITING_MPESA_PAYMENT->name,
+            ])
             ->orderBy(
                 'attendees.' . ($params->sort_by ?? AttendeeDomainObject::getDefaultSort()),
                 $params->sort_direction ?? 'desc',
@@ -116,7 +122,11 @@ class AttendeeRepository extends BaseRepository implements AttendeeRepositoryInt
             ->join('check_in_lists', 'check_in_lists.id', '=', 'product_check_in_lists.check_in_list_id')
             ->where('check_in_lists.short_id', $shortId)
             ->whereIn('attendees.status',[AttendeeStatus::ACTIVE->name, AttendeeStatus::CANCELLED->name, AttendeeStatus::AWAITING_PAYMENT->name])
-            ->whereIn('orders.status', [OrderStatus::COMPLETED->name, OrderStatus::AWAITING_OFFLINE_PAYMENT->name]);
+            ->whereIn('orders.status', [
+                OrderStatus::COMPLETED->name, 
+                OrderStatus::AWAITING_OFFLINE_PAYMENT->name,
+                OrderStatus::AWAITING_MPESA_PAYMENT->name,
+            ]);
 
         $this->loadRelation(new Relationship(AttendeeCheckInDomainObject::class, name: 'check_in'));
 

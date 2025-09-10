@@ -23,7 +23,10 @@ class SendMessageRequest extends FormRequest
             'product_ids.*' => 'integer',
             'order_statuses.*' => [
                 'required_if:message_type,' . MessageTypeEnum::ORDER_OWNERS_WITH_PRODUCT->name,
-                new In([OrderStatus::COMPLETED->name, OrderStatus::AWAITING_OFFLINE_PAYMENT->name]),
+                new In([OrderStatus::COMPLETED->name,
+                    OrderStatus::AWAITING_OFFLINE_PAYMENT->name,
+                    OrderStatus::AWAITING_MPESA_PAYMENT->name,
+                ]),
             ],
         ];
     }

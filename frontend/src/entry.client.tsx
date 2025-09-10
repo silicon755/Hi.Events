@@ -24,7 +24,10 @@ async function initClientApp() {
     if (matches && matches.length > 0) {
         await Promise.all(
             matches.map(async (m) => {
-                const routeModule = await m.route.lazy?.();
+                let routeModule;
+                if (typeof m.route.lazy === "function") {
+                    routeModule = await m.route.lazy();
+                }
                 Object.assign(m.route, {...routeModule, lazy: undefined});
             })
         );

@@ -1,0 +1,57 @@
+import { defineConfig } from "vite";
+import { lingui } from "@lingui/vite-plugin";
+import react from "@vitejs/plugin-react";
+import { copy } from "vite-plugin-copy";
+
+export default defineConfig(({ mode }) => {
+    const isProd = mode === "production";
+
+    return {
+        optimizeDeps: {
+            include: ["react-router"],
+        },
+        server: !isProd
+            ? {
+                  host: "0.0.0.0", // allow access from your VPS IP
+                  port: 5173,
+                  proxy: {
+                      "/api": {
+                          target: "http://127.0.0.1:8000", // Laravel backend
+                          changeOrigin: true,
+                          secure: false,
+                      },
+                      "/storage": {
+                          target: "http://127.0.0.1:8000", // for uploaded files
+                          changeOrigin: true,
+                          secure: false,
+                      },
+                  },
+              }
+            : undefined,
+        plugins: [
+            react({
+                babel: {
+                    plugins: ["macros"],
+                },
+            }),
+            lingui(),
+            copy({
+                targets: [{ src: "src/embed/widget.js", dest: "public" }],
+                hook: "writeBundle",
+            }),
+        ],
+        define: {
+            "process.env": process.env,
+        },
+        ssr: {
+            noExternal: ["react-helmet-async"],
+        },
+        css: {
+            preprocessorOptions: {
+                scss: {
+                    api: "modern-compiler",
+                },
+            },
+        },
+    };
+});

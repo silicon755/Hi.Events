@@ -56,6 +56,15 @@ export interface RefundOrderPayload {
     cancel_order: boolean;
 }
 
+// New M-Pesa payment intent interface
+export interface MpesaPaymentIntent {
+    checkout_request_id: string;
+    merchant_request_id: string;
+    response_code: string;
+    response_description: string;
+    customer_message: string;
+}
+
 export const orderClient = {
     all: async (eventId: IdParam, pagination: QueryFilters) => {
         const response = await api.get<GenericPaginatedResponse<Order>>(
@@ -147,6 +156,25 @@ export const orderClientPublic = {
             client_secret: string,
             account_id?: string,
         }>(`events/${eventId}/order/${orderShortId}/stripe/payment_intent`);
+        return response.data;
+    },
+
+    // New function to create M-Pesa payment intent
+    createMpesaPaymentIntent: async (eventId: number, orderShortId: string, phone_number: string) => {
+        const response = await publicApi.post<GenericDataResponse<{
+            mpesa_payment_intent: MpesaPaymentIntent,
+        }>>(`events/${eventId}/order/${orderShortId}/mpesa/payment_intent`, {
+            phone_number: phone_number
+        });
+        return response.data;
+    },
+
+    // New function to find M-Pesa payment intent status
+    findMpesaPaymentIntent: async (eventId: number, orderShortId: string) => {
+        const response = await publicApi.get<GenericDataResponse<{
+            status: 'PENDING' | 'COMPLETED' | 'FAILED',
+            transaction_id: string | null
+        }>>(`events/${eventId}/order/${orderShortId}/mpesa/payment_intent`);
         return response.data;
     },
 

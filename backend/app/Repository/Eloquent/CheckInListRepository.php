@@ -46,7 +46,7 @@ class CheckInListRepository extends BaseRepository implements CheckInListReposit
                         AND pcil.deleted_at IS NULL
                         AND pcil.check_in_list_id = :check_in_list_id
                         AND (
-                            (es.allow_orders_awaiting_offline_payment_to_check_in = true AND a.status in ('ACTIVE', 'AWAITING_PAYMENT') AND o.status IN ('COMPLETED', 'AWAITING_OFFLINE_PAYMENT'))
+                            (es.allow_orders_awaiting_offline_payment_to_check_in = true AND a.status in ('ACTIVE', 'AWAITING_PAYMENT') AND o.status IN ('COMPLETED', 'AWAITING_OFFLINE_PAYMENT', 'AWAITING_MPESA_PAYMENT'))
                             OR
                             (es.allow_orders_awaiting_offline_payment_to_check_in = false AND a.status = 'ACTIVE' AND o.status = 'COMPLETED')
                         )
@@ -95,7 +95,7 @@ class CheckInListRepository extends BaseRepository implements CheckInListReposit
                        AND pcil.deleted_at IS NULL
                        AND pcil.check_in_list_id IN ($placeholders)
                        AND (
-                           (es.allow_orders_awaiting_offline_payment_to_check_in = true AND a.status IN ('ACTIVE', 'AWAITING_PAYMENT') AND o.status IN ('COMPLETED', 'AWAITING_OFFLINE_PAYMENT'))
+                           (es.allow_orders_awaiting_offline_payment_to_check_in = true AND a.status IN ('ACTIVE', 'AWAITING_PAYMENT') AND o.status IN ('COMPLETED', 'AWAITING_OFFLINE_PAYMENT', 'AWAITING_MPESA_PAYMENT'))
                            OR
                            (es.allow_orders_awaiting_offline_payment_to_check_in = false AND a.status = 'ACTIVE' AND o.status = 'COMPLETED')
                        )

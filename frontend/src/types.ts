@@ -3,7 +3,7 @@
  */
 import {SupportedLocales} from "./locales.ts";
 
-export type ConfigKeys = 
+export type ConfigKeys =
     | 'VITE_API_URL_SERVER'
     | 'VITE_API_URL_CLIENT'
     | 'VITE_FRONTEND_URL'
@@ -128,7 +128,8 @@ export interface Image {
 
 export type ImageType = 'EVENT_COVER' | 'EDITOR_IMAGE' | 'ORGANIZER_LOGO' | 'ORGANIZER_COVER' | 'ORGANIZER_IMAGE';
 
-export type PaymentProvider = 'STRIPE' | 'OFFLINE';
+// Updated PaymentProvider type to include 'MPESA'
+export type PaymentProvider = 'STRIPE' | 'OFFLINE' | 'MPESA';
 
 export interface EventSettings {
     event_id?: IdParam;
@@ -160,6 +161,8 @@ export interface EventSettings {
 
     // Payment settings
     offline_payment_instructions: string;
+    // New Mpesa instruction field
+    mpesa_instructions?: string;
     payment_providers: PaymentProvider[];
     allow_orders_awaiting_offline_payment_to_check_in: boolean;
 

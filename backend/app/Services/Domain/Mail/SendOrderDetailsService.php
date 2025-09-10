@@ -25,8 +25,7 @@ class SendOrderDetailsService
         private readonly OrderRepositoryInterface  $orderRepository,
         private readonly Mailer                    $mailer,
         private readonly SendAttendeeTicketService $sendAttendeeTicketService,
-    )
-    {
+    ) {
     }
 
     public function sendOrderSummaryAndTicketEmails(OrderDomainObject $order): void
@@ -61,13 +60,12 @@ class SendOrderDetailsService
     }
 
     public function sendCustomerOrderSummary(
-        OrderDomainObject        $order,
-        EventDomainObject        $event,
-        OrganizerDomainObject    $organizer,
+        OrderDomainObject      $order,
+        EventDomainObject      $event,
+        OrganizerDomainObject  $organizer,
         EventSettingDomainObject $eventSettings,
-        ?InvoiceDomainObject     $invoice = null
-    ): void
-    {
+        ?InvoiceDomainObject   $invoice = null,
+    ): void {
         $this->mailer
             ->to($order->getEmail())
             ->locale($order->getLocale())

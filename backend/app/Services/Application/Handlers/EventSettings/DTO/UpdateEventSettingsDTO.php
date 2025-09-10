@@ -54,6 +54,7 @@ class UpdateEventSettingsDTO extends BaseDTO
         public readonly array                   $payment_providers = [],
         public readonly ?string                 $offline_payment_instructions = null,
         public readonly bool                    $allow_orders_awaiting_offline_payment_to_check_in = false,
+        public readonly ?string                 $mpesa_instructions = null, // Add this new property
 
         // Invoice settings
         public readonly bool                    $enable_invoicing = false,
@@ -109,6 +110,7 @@ class UpdateEventSettingsDTO extends BaseDTO
             // Payment defaults
             payment_providers: [PaymentProviders::STRIPE->value],
             offline_payment_instructions: null,
+            mpesa_instructions: null, // Add this new property
 
             // Invoice defaults
             enable_invoicing: false,

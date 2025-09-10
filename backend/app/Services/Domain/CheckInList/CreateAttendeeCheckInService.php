@@ -32,8 +32,7 @@ class CreateAttendeeCheckInService
         private readonly EventSettingsRepositoryInterface   $eventSettingsRepository,
         private readonly ConnectionInterface                $db,
         private readonly MarkOrderAsPaidService             $markOrderAsPaidService,
-    )
-    {
+    ) {
     }
 
     /**
@@ -48,8 +47,7 @@ class CreateAttendeeCheckInService
         string     $checkInListUuid,
         string     $checkInUserIpAddress,
         Collection $attendeesAndActions
-    ): CreateAttendeeCheckInsResponseDTO
-    {
+    ): CreateAttendeeCheckInsResponseDTO {
         $checkInList = $this->checkInListDataService->getCheckInList($checkInListUuid);
         $this->validateCheckInListIsActive($checkInList);
 
@@ -131,8 +129,7 @@ class CreateAttendeeCheckInService
         EventSettingDomainObject $eventSettings,
         Collection               $existingCheckIns,
         string                   $checkInUserIpAddress
-    ): CreateAttendeeCheckInsResponseDTO
-    {
+    ): CreateAttendeeCheckInsResponseDTO {
         $errors = new ErrorBagDTO();
         $checkIns = new Collection();
 
@@ -165,14 +162,13 @@ class CreateAttendeeCheckInService
      * @throws CannotCheckInException
      */
     private function processIndividualCheckIn(
-        AttendeeDomainObject     $attendee,
-        Collection               $attendeesAndActions,
-        CheckInListDomainObject  $checkInList,
-        EventSettingDomainObject $eventSettings,
-        Collection               $existingCheckIns,
-        string                   $checkInUserIpAddress
-    ): CheckInResultDTO
-    {
+        AttendeeDomainObject      $attendee,
+        Collection                $attendeesAndActions,
+        CheckInListDomainObject   $checkInList,
+        EventSettingDomainObject  $eventSettings,
+        Collection                $existingCheckIns,
+        string                    $checkInUserIpAddress
+    ): CheckInResultDTO {
         $this->checkInListDataService->verifyAttendeeBelongsToCheckInList($checkInList, $attendee);
 
         $attendeeAction = $attendeesAndActions->first(
@@ -196,7 +192,7 @@ class CreateAttendeeCheckInService
         return $this->db->transaction(function () use ($attendee, $checkInList, $checkInAction, $checkInUserIpAddress) {
             $checkIn = $this->createCheckIn($attendee, $checkInList, $checkInUserIpAddress);
 
-            if ($checkInAction->value === AttendeeCheckInActionType::CHECK_IN_AND_MARK_ORDER_AS_PAID->value) {
+            if ($checkInAction === AttendeeCheckInActionType::CHECK_IN_AND_MARK_ORDER_AS_PAID) {
                 $this->markOrderAsPaidService->markOrderAsPaid(
                     orderId: $attendee->getOrderId(),
                     eventId: $attendee->getEventId(),
@@ -218,8 +214,7 @@ class CreateAttendeeCheckInService
         AttendeeDomainObject      $attendee,
         AttendeeCheckInActionType $checkInAction,
         EventSettingDomainObject  $eventSettings
-    ): ?string
-    {
+    ): ?string {
         $allowAttendeesAwaitingPaymentToCheckIn = $eventSettings->getAllowOrdersAwaitingOfflinePaymentToCheckIn();
 
         if ($attendee->getStatus() === AttendeeStatus::CANCELLED->name) {
@@ -227,18 +222,28 @@ class CreateAttendeeCheckInService
                 'attendee_name' => $attendee->getFullName(),
             ]);
         }
-
-        if (!$allowAttendeesAwaitingPaymentToCheckIn) {
-            if ($checkInAction->value === AttendeeCheckInActionType::CHECK_IN->value
-                && $attendee->getStatus() === AttendeeStatus::AWAITING_PAYMENT->name
-            ) {
-                return __('Unable to check in as attendee :attendee_name\'s order is awaiting payment', [
+        
+        // This is the new logic to handle the "check in and mark as paid" action
+        // The attendee can be checked in if their order is awaiting payment
+        // only if this feature is enabled in the event settings.
+        if ($checkInAction === AttendeeCheckInActionType::CHECK_IN_AND_MARK_ORDER_AS_PAID) {
+            if ($attendee->getStatus() !== AttendeeStatus::AWAITING_PAYMENT->name) {
+                return __('Attendee :attendee_name\'s order has already been paid and cannot be marked as paid again.', [
                     'attendee_name' => $attendee->getFullName(),
                 ]);
             }
-
-            if ($checkInAction->value === AttendeeCheckInActionType::CHECK_IN_AND_MARK_ORDER_AS_PAID->value) {
-                return __('Attendee :attendee_name\'s order cannot be marked as paid. Please check your event settings', [
+            
+            if (!$allowAttendeesAwaitingPaymentToCheckIn) {
+                 return __('Attendee :attendee_name\'s order cannot be marked as paid. Please check your event settings', [
+                     'attendee_name' => $attendee->getFullName(),
+                 ]);
+            }
+        }
+        
+        // This is the original check in logic
+        if ($checkInAction === AttendeeCheckInActionType::CHECK_IN && $attendee->getStatus() === AttendeeStatus::AWAITING_PAYMENT->name) {
+            if (!$allowAttendeesAwaitingPaymentToCheckIn) {
+                return __('Unable to check in as attendee :attendee_name\'s order is awaiting payment', [
                     'attendee_name' => $attendee->getFullName(),
                 ]);
             }
@@ -251,8 +256,7 @@ class CreateAttendeeCheckInService
         AttendeeDomainObject    $attendee,
         CheckInListDomainObject $checkInList,
         string                  $checkInUserIpAddress
-    ): AttendeeCheckInDomainObject
-    {
+    ): AttendeeCheckInDomainObject {
         return $this->attendeeCheckInRepository->create([
             AttendeeCheckInDomainObjectAbstract::ORDER_ID => $attendee->getOrderId(),
             AttendeeCheckInDomainObjectAbstract::ATTENDEE_ID => $attendee->getId(),

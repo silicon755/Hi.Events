@@ -143,9 +143,17 @@ class OrderDomainObject extends Generated\OrderDomainObjectAbstract implements I
         return (int)ceil($this->getTotalGross()) > 0;
     }
 
-    public function isOrderAwaitingOfflinePayment(): bool
+    // public function isOrderAwaitingOfflinePayment(): bool
+    // {
+    //     return $this->getStatus() === OrderStatus::AWAITING_OFFLINE_PAYMENT->name;
+    // }
+
+    public function isAwaitingPayment(): bool
     {
-        return $this->getStatus() === OrderStatus::AWAITING_OFFLINE_PAYMENT->name;
+        return in_array($this->getStatus(), [
+            OrderStatus::AWAITING_OFFLINE_PAYMENT->name,
+            OrderStatus::AWAITING_MPESA_PAYMENT->name,
+        ]);
     }
 
     public function isOrderCompleted(): bool

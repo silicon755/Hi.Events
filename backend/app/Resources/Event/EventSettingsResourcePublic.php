@@ -66,6 +66,12 @@ class EventSettingsResourcePublic extends JsonResource
             'offline_payment_instructions' => $this->getOfflinePaymentInstructions(),
             'allow_orders_awaiting_offline_payment_to_check_in' => $this->getAllowOrdersAwaitingOfflinePaymentToCheckIn(),
 
+            // This is where you would add M-Pesa specific settings for the public API
+            'mpesa_instructions' => $this->when(
+                in_array(\HiEvents\DomainObjects\Enums\PaymentProviders::MPESA->name, $this->getPaymentProviders(), true),
+                $this->getMpesaInstructions()
+            ),
+
             // Invoice settings
             'require_billing_address' => $this->getRequireBillingAddress(),
             'invoice_label' => $this->getInvoiceLabel(),

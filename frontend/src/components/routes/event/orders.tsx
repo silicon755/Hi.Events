@@ -103,9 +103,16 @@ export const Orders: React.FC = () => {
             });
     };
 
+    const getFilterValue = (filter: any) => {
+        if (Array.isArray(filter)) {
+            return filter.flatMap(f => f.value ?? []);
+        }
+        return filter?.value ?? [];
+    };
+
     const currentFilters = {
-        status: searchParams.filterFields?.status?.value || [],
-        refund_status: searchParams.filterFields?.refund_status?.value || []
+        status: getFilterValue(searchParams.filterFields?.status),
+        refund_status: getFilterValue(searchParams.filterFields?.refund_status)
     };
 
     return (

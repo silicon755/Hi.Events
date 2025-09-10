@@ -92,6 +92,11 @@ readonly class PartialUpdateEventSettingsHandler
                 'allow_orders_awaiting_offline_payment_to_check_in' => $eventSettingsDTO->settings['allow_orders_awaiting_offline_payment_to_check_in']
                     ?? $existingSettings->getAllowOrdersAwaitingOfflinePaymentToCheckIn(),
 
+                // Add this new line for M-Pesa instructions
+                'mpesa_instructions' => array_key_exists('mpesa_instructions', $eventSettingsDTO->settings)
+                    ? $eventSettingsDTO->settings['mpesa_instructions']
+                    : $existingSettings->getMpesaInstructions(),
+
                 // Invoice settings
                 'enable_invoicing' => $eventSettingsDTO->settings['enable_invoicing'] ?? $existingSettings->getEnableInvoicing(),
                 'invoice_label' => array_key_exists('invoice_label', $eventSettingsDTO->settings)

@@ -93,7 +93,7 @@ msgstr "{0} cập nhật thành công"
 #~ msgid "{0}'s Events"
 #~ msgstr "{0} sự kiện của"
 
-#: src/components/layouts/CheckIn/index.tsx:449
+#: src/components/layouts/CheckIn/index.tsx:457
 msgid "{0}/{1} checked in"
 msgstr "{0}/{1} đã checked in"
 
@@ -812,7 +812,7 @@ msgstr "Chi tiết người tham dự"
 msgid "Attendee Management"
 msgstr "Quản lý người tham dự"
 
-#: src/components/layouts/CheckIn/index.tsx:150
+#: src/components/layouts/CheckIn/index.tsx:154
 msgid "Attendee not found"
 msgstr "Không tìm thấy người tham dự"
 
@@ -889,7 +889,7 @@ msgstr "Đang chờ thanh toán offline"
 msgid "Awaiting Offline Pmt."
 msgstr "Chờ thanh toán ngoại tuyến"
 
-#: src/components/layouts/CheckIn/index.tsx:263
+#: src/components/layouts/CheckIn/index.tsx:267
 msgid "Awaiting payment"
 msgstr "đang chờ thanh toán"
 
@@ -1003,7 +1003,7 @@ msgstr "Quyền sử dụng máy ảnh đã bị từ chối. Hãy <0>Yêu cầu
 #: src/components/common/ContactOrganizerModal/index.tsx:104
 #: src/components/common/PromoCodeTable/index.tsx:40
 #: src/components/common/QuestionAndAnswerList/index.tsx:149
-#: src/components/layouts/CheckIn/index.tsx:225
+#: src/components/layouts/CheckIn/index.tsx:229
 #: src/utilites/confirmationDialog.tsx:11
 msgid "Cancel"
 msgstr "Hủy"
@@ -1036,7 +1036,7 @@ msgstr "Hủy đơn hàng sẽ hủy tất cả các sản phẩm liên quan và
 msgid "Cancelled"
 msgstr "Hủy bỏ"
 
-#: src/components/layouts/CheckIn/index.tsx:173
+#: src/components/layouts/CheckIn/index.tsx:177
 msgid "Cannot Check In"
 msgstr "Không thể xác nhận tham dự"
 
@@ -1094,23 +1094,23 @@ msgstr "Thay đổi mật khẩu"
 msgid "Charity"
 msgstr "Từ thiện"
 
-#: src/components/layouts/CheckIn/index.tsx:180
+#: src/components/layouts/CheckIn/index.tsx:184
 msgid "Check In"
 msgstr "Check-in"
 
-#: src/components/layouts/CheckIn/index.tsx:193
+#: src/components/layouts/CheckIn/index.tsx:197
 msgid "Check in {0} {1}"
 msgstr "Check-in {0} {1}"
 
-#: src/components/layouts/CheckIn/index.tsx:218
+#: src/components/layouts/CheckIn/index.tsx:222
 msgid "Check in and mark order as paid"
 msgstr "Check-in và đánh dấu đơn hàng đã thanh toán"
 
-#: src/components/layouts/CheckIn/index.tsx:209
+#: src/components/layouts/CheckIn/index.tsx:213
 msgid "Check in only"
 msgstr "Chỉ check-in"
 
-#: src/components/layouts/CheckIn/index.tsx:177
+#: src/components/layouts/CheckIn/index.tsx:181
 msgid "Check Out"
 msgstr "Check-out"
 
@@ -1142,15 +1142,15 @@ msgstr "Danh sách check-in được tạo thành công"
 msgid "Check-In List deleted successfully"
 msgstr "Danh sách check-in đã bị xóa thành công"
 
-#: src/components/layouts/CheckIn/index.tsx:326
+#: src/components/layouts/CheckIn/index.tsx:334
 msgid "Check-in list has expired"
 msgstr "Danh sách check-in đã hết hạn"
 
-#: src/components/layouts/CheckIn/index.tsx:343
+#: src/components/layouts/CheckIn/index.tsx:351
 msgid "Check-in list is not active"
 msgstr "Danh sách check-in không hoạt động"
 
-#: src/components/layouts/CheckIn/index.tsx:311
+#: src/components/layouts/CheckIn/index.tsx:319
 msgid "Check-in list not found"
 msgstr "Danh sách Check-In không tồn tại"
 
@@ -2578,7 +2578,7 @@ msgstr "Ngày hết hạn"
 
 #: src/components/routes/event/Affiliates/index.tsx:79
 #: src/components/routes/event/attendees.tsx:80
-#: src/components/routes/event/orders.tsx:140
+#: src/components/routes/event/orders.tsx:147
 msgid "Export"
 msgstr "Xuất"
 
@@ -2725,7 +2725,7 @@ msgstr "Lễ hội"
 #~ msgid "Film"
 #~ msgstr ""
 
-#: src/components/routes/event/orders.tsx:121
+#: src/components/routes/event/orders.tsx:128
 msgid "Filter Orders"
 msgstr "Lọc đơn hàng"
 
@@ -4130,7 +4130,7 @@ msgid "Order Updated"
 msgstr "Đơn hàng cập nhật"
 
 #: src/components/layouts/Event/index.tsx:100
-#: src/components/routes/event/orders.tsx:113
+#: src/components/routes/event/orders.tsx:120
 msgid "Orders"
 msgstr "Đơn hàng"
 
@@ -5035,8 +5035,8 @@ msgstr "Lưu cài đặt"
 msgid "Save Social Links"
 msgstr "Lưu liên kết mạng xã hội"
 
-#: src/components/layouts/CheckIn/index.tsx:398
-#: src/components/layouts/CheckIn/index.tsx:400
+#: src/components/layouts/CheckIn/index.tsx:406
+#: src/components/layouts/CheckIn/index.tsx:408
 msgid "Scan QR Code"
 msgstr "Quét mã QR"
 
@@ -5061,11 +5061,11 @@ msgstr "Tìm kiếm theo tên người tham dự, email hoặc đơn hàng"
 msgid "Search by event name..."
 msgstr "Tìm kiếm theo tên sự kiện"
 
-#: src/components/routes/event/orders.tsx:126
+#: src/components/routes/event/orders.tsx:133
 msgid "Search by name, email, or order #..."
 msgstr "Tìm kiếm theo tên, email, hoặc mã đơn hàng #"
 
-#: src/components/layouts/CheckIn/index.tsx:394
+#: src/components/layouts/CheckIn/index.tsx:402
 msgid "Search by name, order #, attendee # or email..."
 msgstr "Tìm kiếm theo tên, mã đơn hàng #, người tham dự, hoặc email..."
 
@@ -5852,7 +5852,7 @@ msgstr "Màu nền của các khu vực nội dung (thẻ, tiêu đề, v.v.)"
 msgid "The background color of the entire page"
 msgstr "Màu nền của toàn bộ trang"
 
-#: src/components/layouts/CheckIn/index.tsx:316
+#: src/components/layouts/CheckIn/index.tsx:324
 msgid "The check-in list you are looking for does not exist."
 msgstr "Danh sách check-in bạn đang tìm kiếm không tồn tại."
 
@@ -5954,7 +5954,7 @@ msgstr "Có một lỗi khi gửi tin nhắn của bạn"
 msgid "These details will only be shown if order is completed successfully. Orders awaiting payment will not show this message."
 msgstr "Những chi tiết này sẽ chỉ được hiển thị nếu đơn hàng được hoàn thành thành công. Đơn hàng chờ thanh toán sẽ không hiển thị tin nhắn này."
 
-#: src/components/layouts/CheckIn/index.tsx:201
+#: src/components/layouts/CheckIn/index.tsx:205
 msgid "This attendee has an unpaid order."
 msgstr "Người tham dự này có một đơn hàng không được thanh toán."
 
@@ -5970,7 +5970,7 @@ msgstr "Danh mục này bị ẩn khỏi chế độ xem công khai"
 msgid "This check-in list has expired"
 msgstr "Danh sách người tham dự này đã hết hạn"
 
-#: src/components/layouts/CheckIn/index.tsx:331
+#: src/components/layouts/CheckIn/index.tsx:339
 msgid "This check-in list has expired and is no longer available for check-ins."
 msgstr "Danh sách người tham dự này đã hết hạn và không còn có sẵn để kiểm tra."
 
@@ -5982,7 +5982,7 @@ msgstr "Danh sách người tham dự này đang hoạt động"
 msgid "This check-in list is not active yet"
 msgstr "Danh sách người tham dự này chưa hoạt động"
 
-#: src/components/layouts/CheckIn/index.tsx:348
+#: src/components/layouts/CheckIn/index.tsx:356
 msgid "This check-in list is not yet active and is not available for check-ins."
 msgstr "Danh sách người tham dự này chưa hoạt động và không có sẵn để kiểm tra."
 
@@ -6293,7 +6293,8 @@ msgstr "Loại"
 msgid "Unable to check in attendee"
 msgstr "Không thể kiểm tra người tham dự"
 
-#: src/components/layouts/CheckIn/index.tsx:114
+#: src/components/layouts/CheckIn/index.tsx:115
+#: src/components/layouts/CheckIn/index.tsx:117
 msgid "Unable to check out attendee"
 msgstr "Không thể kiểm tra người tham dự"
 
@@ -6313,7 +6314,7 @@ msgstr "Không thể tạo câu hỏi. Vui lòng kiểm tra thông tin của b�
 msgid "Unable to duplicate product. Please check the your details"
 msgstr "Không thể nhân bản sản phẩm. Vui lòng kiểm tra thông tin của bạn"
 
-#: src/components/layouts/CheckIn/index.tsx:145
+#: src/components/layouts/CheckIn/index.tsx:149
 msgid "Unable to fetch attendee"
 msgstr "Không thể lấy thông tin người tham dự"
 
@@ -6355,7 +6356,7 @@ msgstr "Không giới hạn có sẵn"
 msgid "Unlimited usages allowed"
 msgstr "Sử dụng không giới hạn"
 
-#: src/components/layouts/CheckIn/index.tsx:200
+#: src/components/layouts/CheckIn/index.tsx:204
 msgid "Unpaid Order"
 msgstr "Đơn hàng chưa thanh toán"
 
@@ -6901,8 +6902,8 @@ msgstr "Bạn có thể tạo mã khuyến mãi nhắm mục tiêu sản phẩm 
 msgid "You cannot change the product type as there are attendees associated with this product."
 msgstr "Bạn không thể thay đổi loại sản phẩm vì có những người tham dự liên quan đến sản phẩm này."
 
-#: src/components/layouts/CheckIn/index.tsx:129
-#: src/components/layouts/CheckIn/index.tsx:164
+#: src/components/layouts/CheckIn/index.tsx:133
+#: src/components/layouts/CheckIn/index.tsx:168
 msgid "You cannot check in attendees with unpaid orders. This setting can be changed in the event settings."
 msgstr "Bạn không thể xác nhận người tham dự với các đơn hàng không được thanh toán. Cài đặt này có thể được thay đổi ở phần cài đặt sự kiện."
 

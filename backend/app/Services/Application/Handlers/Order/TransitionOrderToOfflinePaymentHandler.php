@@ -29,9 +29,7 @@ class TransitionOrderToOfflinePaymentHandler
         private readonly DatabaseManager                  $databaseManager,
         private readonly EventSettingsRepositoryInterface $eventSettingsRepository,
         private readonly DomainEventDispatcherService     $domainEventDispatcherService,
-
-    )
-    {
+    ) {
     }
 
     public function handle(TransitionOrderToOfflinePaymentPublicDTO $dto): OrderDomainObject
@@ -47,9 +45,9 @@ class TransitionOrderToOfflinePaymentHandler
                 'event_id' => $order->getEventId(),
             ]);
 
-            $this->validateOfflinePayment($order, $eventSettings);
+            $this->validateOfflinePayment($order, $eventSettings, $dto->paymentProvider);
 
-            $this->updateOrderStatuses($order->getId());
+            $this->updateOrderStatuses($order->getId(), $dto->paymentProvider);
 
             $this->productQuantityUpdateService->updateQuantitiesFromOrder($order);
 
@@ -74,34 +72,35 @@ class TransitionOrderToOfflinePaymentHandler
         });
     }
 
-    private function updateOrderStatuses(int $orderId): void
+    private function updateOrderStatuses(int $orderId, PaymentProviders $provider): void
     {
         $this->orderRepository
             ->updateFromArray($orderId, [
                 OrderDomainObjectAbstract::PAYMENT_STATUS => OrderPaymentStatus::AWAITING_OFFLINE_PAYMENT->name,
                 OrderDomainObjectAbstract::STATUS => OrderStatus::AWAITING_OFFLINE_PAYMENT->name,
-                OrderDomainObjectAbstract::PAYMENT_PROVIDER => PaymentProviders::OFFLINE->value,
+                OrderDomainObjectAbstract::PAYMENT_PROVIDER => $provider->value,
             ]);
     }
 
     /**
      * @throws ResourceConflictException
+     * @throws UnauthorizedException
      */
     public function validateOfflinePayment(
-        OrderDomainObject        $order,
+        OrderDomainObject      $order,
         EventSettingDomainObject $settings,
-    ): void
-    {
+        PaymentProviders         $provider,
+    ): void {
         if (!$order->isOrderReserved()) {
-            throw new ResourceConflictException(__('Order is not in the correct status to transition to offline payment'));
+            throw new ResourceConflictException(__('Order is not in the correct status to transition to awaiting payment'));
         }
 
         if ($order->isReservedOrderExpired()) {
             throw new ResourceConflictException(__('Order reservation has expired'));
         }
 
-        if (collect($settings->getPaymentProviders())->contains(PaymentProviders::OFFLINE->value) === false) {
-            throw new UnauthorizedException(__('Offline payments are not enabled for this event'));
+        if (collect($settings->getPaymentProviders())->contains($provider->value) === false) {
+            throw new UnauthorizedException(__("$provider->name payments are not enabled for this event"));
         }
     }
 }

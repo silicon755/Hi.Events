@@ -8,6 +8,7 @@ enum OrderStatus
     case CANCELLED;
     case COMPLETED;
     case AWAITING_OFFLINE_PAYMENT;
+    case AWAITING_MPESA_PAYMENT; // Added for MPESA payment status
 
     public static function getHumanReadableStatus(string $status): string
     {
@@ -16,6 +17,7 @@ enum OrderStatus
             self::CANCELLED->name => __('Cancelled'),
             self::COMPLETED->name => __('Completed'),
             self::AWAITING_OFFLINE_PAYMENT->name => __('Awaiting offline payment'),
+            self::AWAITING_MPESA_PAYMENT->name => __('Awaiting M-Pesa payment'),
         };
     }
 }
