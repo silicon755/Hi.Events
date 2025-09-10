@@ -1,45 +1,25 @@
 import express from "express";
-import { installGlobals } from "@remix-run/node";
+import {installGlobals} from "@remix-run/node";
 import process from "process";
-import { createServer as viteServer } from "vite";
+import {createServer as viteServer} from "vite";
 import compression from "compression";
 import fs from "node:fs/promises";
 import sirv from "sirv";
 import cookieParser from "cookie-parser";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
+import {fileURLToPath} from "node:url";
 import * as nodePath from "node:path";
 import * as nodeUrl from "node:url";
-import * as net from "node:net";
 import "dotenv/config";
 
 installGlobals();
 
-async function findAvailablePort(startPort) {
-    return new Promise((resolve) => {
-        const server = net.createServer();
-        server.listen(startPort, () => {
-            server.once("close", () => resolve(startPort));
-            server.close();
-        });
-        server.on("error", () => {
-            // Try the next port if busy
-            resolve(startPort + 1);
-        });
-    });
-}
-
 async function main() {
     const base = process.env.BASE || "/";
-    const DEFAULT_PORT = process.argv.includes("--port")
-        ? parseInt(process.argv[process.argv.indexOf("--port") + 1])
-        : parseInt(process.env.NODE_PORT) || 5678;
+    const port = process.argv.includes("--port")
+        ? process.argv[process.argv.indexOf("--port") + 1]
+        : process.env.NODE_PORT || 5678;
     const isProduction = process.env.NODE_ENV === "production";
-
-    const port = await findAvailablePort(DEFAULT_PORT);
-    if (port !== DEFAULT_PORT) {
-        console.warn(`Port ${DEFAULT_PORT} in use. Using ${port} instead.`);
-    }
 
     const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -54,7 +34,6 @@ async function main() {
     const app = express();
     app.use(cookieParser());
 
-    // Serve static .well-known files
     app.use('/.well-known', express.static(path.join(__dirname, 'public/.well-known')));
 
     let vite;
@@ -63,11 +42,13 @@ async function main() {
         vite = await viteServer({
             server: { middlewareMode: true },
             appType: "custom",
+            base,
         });
+
         app.use(vite.middlewares);
     } else {
         app.use(compression());
-        app.use(sirv(path.join(__dirname, "/dist/client"), { extensions: [] }));
+        app.use(base, sirv(path.join(__dirname, "./dist/client"), { extensions: [] }));
     }
 
     const getViteEnvironmentVariables = () => {
@@ -88,12 +69,12 @@ async function main() {
             let render;
 
             if (!isProduction) {
-                template = await fs.readFile(path.join(__dirname, "index.html"), "utf-8");
+                template = await fs.readFile(path.join(__dirname, "./index.html"), "utf-8");
                 template = await vite.transformIndexHtml(url, template);
                 render = (await vite.ssrLoadModule("/src/entry.server.tsx")).render;
             } else {
                 template = templateHtml;
-                render = (await dynamicImport(path.join(__dirname, "dist/server/entry.server.js"))).render;
+                render = (await dynamicImport(path.join(__dirname, "./dist/server/entry.server.js"))).render;
             }
 
             const { appHtml, dehydratedState, helmetContext } = await render(
@@ -146,7 +127,7 @@ async function main() {
         return import(
             nodePath.isAbsolute(path) ? nodeUrl.pathToFileURL(path).toString() : path
         );
-    };
+        
+    }
 }
-
 main();
